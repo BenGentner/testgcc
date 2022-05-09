@@ -8,6 +8,8 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
 
+
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
@@ -24,7 +26,7 @@
 
 <body class="index-page">
 
-@include('includes.navbar')
+{{--@include('includes.navbar')--}}
 
 <div class="wrapper">
     @include('includes.header')
