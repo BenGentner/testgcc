@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/{page:slug}', [PageController::class, 'index'])->name('page');
+Route::get('/test/{page:slug}', function (\App\Models\Page $page) {
+    $media = $page->getMedia("page-header");
+
+    if ($media->hasAny(0))
+    {
+        $image = $media[0]->getFullUrl();
+    }
+    return $image;
+});

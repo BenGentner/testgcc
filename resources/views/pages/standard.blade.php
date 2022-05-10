@@ -11,6 +11,8 @@
 
                     <div class="card">
                         <div class="content">
+{{--                            TODO: - test + remove--}}
+{{--                            {{csrf_field()}}--}}
                             {!! $page->content !!}
                         </div>
                     </div>
@@ -19,3 +21,4 @@
             </div>
         </div>
 @endsection
+

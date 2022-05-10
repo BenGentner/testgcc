@@ -15,7 +15,8 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 
     public function show(Request $request)
     {
-        return view("Webfactor/WfBasicFunctionPackage/posts");
+        $articles = parent::show($request);
+        return view("news", compact("articles"));
     }
 
 }

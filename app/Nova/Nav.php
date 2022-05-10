@@ -4,7 +4,10 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -41,13 +44,57 @@ class Nav extends Resource
      */
     public function fields(Request $request)
     {
+        /*
+         * TODO:
+         *  - https://github.com/mertasan/nova-sortable/tree/nova4 better sortable
+         */
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("Element name in navigation", "name"),
-            BelongsTo::make("page"),
-            BelongsTo::make("parent", "parent", "App\Nova\Page"),
-            //Text::make("custom url", "url")->placeholder("default: page url"), kann evtl. noch gemacht werden
+            Text::make("Element name in navigation", "name")->rules('required'),
 
+            //Text::make("custom url", "url")->placeholder("default: page url"), kann evtl. noch gemacht werden
+            Select::make('Type', 'type')
+                ->options([
+                    'page' => 'page',
+                    'internal_link' => 'interner link',
+                    'external_link' => 'externer link'
+                ])->rules('required'),
+
+            BelongsTo::make("page")
+                ->nullable()
+                ->hide()
+                ->dependsOn('type', function (BelongsTo $field, NovaRequest $request, FormData $formData) {
+                    if($formData->type === 'page')
+                    {
+                        $field->show()->rules(['required']);
+                    }
+                }),
+
+            Text::make("Link", "link")
+                ->hide()
+                ->dependsOn('type', function (Text $field, NovaRequest $request, FormData $formData) {
+                    if($formData->type === 'external_link')
+                    {
+                        $field->show()->rules(['required'])->placeholder("http://example.com/your-desired-page");
+                    }
+                    if($formData->type === 'internal_link')
+                    {
+                        $field->show()->rules(['required'])->placeholder("Interner slug. Bsp: 'admin/page' (ohne Anführungszeichen) für ':url'");
+                    }
+                }),
+
+
+            BelongsTo::make("Parent", "parent", "App\Nova\Nav")->nullable(),
+
+            Number::make("position left", "lft")
+                ->hide()
+                ->sortable()
+                ->dependsOn('parent', function (Number $field, NovaRequest $request, FormData $formData) {
+                    if($formData->parent == '')
+                    {
+                        $field->show()->rules("unique:nav_items,lft");
+                    }
+                }),
         ];
     }
 

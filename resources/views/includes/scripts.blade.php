@@ -1,4 +1,5 @@
 <!--   Core JS Files   -->
+<script type="module" src="../../js/app.js"></script>
 <script src="/vendor/material-kit/assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="/vendor/material-kit/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/vendor/material-kit/assets/js/material.min.js"></script>
@@ -18,6 +19,10 @@
 
     $().ready(function () {
         // the body of this function is in assets/material-kit.js
+
+        /* TODO: - slider init not working
+        *
+         */
         materialKit.initSliders();
         window_width = $(window).width();
 
