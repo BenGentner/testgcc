@@ -2,7 +2,19 @@
 
 namespace App\Providers;
 
+
+use App\Nova\Appointment;
+use App\Nova\Dashboards\Main;
+use App\Nova\Gallery;
+use App\Nova\Media;
+use App\Nova\Nav;
+use App\Nova\Page;
+use App\Nova\Post;
+use App\Nova\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -16,6 +28,32 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::mainMenu(
+            function (Request $request) {
+                return [
+                    MenuSection::dashboard(Main::class)->icon('chart-bar'),
+
+                    MenuSection::make('Termine', [
+                        MenuItem::resource(Appointment::class),
+                    ])->icon("calendar"),
+
+                    MenuSection::make('Content', [
+                        MenuItem::resource(Nav::class),
+                        MenuItem::resource(Page::class),
+                        MenuItem::resource(Post::class),
+                    ])->icon('server'),
+
+                    MenuSection::make('Bilder', [
+                        MenuItem::resource(Gallery::class),
+                        MenuItem::resource(Media::class),
+                    ])->icon('camera'),
+
+                    MenuSection::make('User', [
+                        MenuItem::resource(User::class),
+                    ])->icon('users'),
+                ];
+            });
     }
 
     /**

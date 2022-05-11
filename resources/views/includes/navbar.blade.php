@@ -8,15 +8,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/">
-                    <div class="logo-container">
-                        <div class="brand">
-                        </div>
-                    </div>
-                </a>
-            </div>
 
-            <navigation></navigation>
+
+{{--                <a href="/">--}}
+{{--                    <div class="logo-container">--}}
+{{--                        <div class="brand">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+            </div>
+            <navigation id="navigation-index"></navigation>
+
 
             {{--        <div class="collapse navbar-collapse pull-right">--}}
             {{--            <ul class="nav navbar-nav">--}}

@@ -51,7 +51,9 @@ class Page extends Resource
             Text::make("title","title"),
             Text::make("name","name"),
             Text::make("slug","slug"),
-            NovaTinyMCE::make("content", "content"),
+            NovaTinyMCE::make("content", "content")->options([
+                'use_lfm' => true
+            ]),
 //            Number::make('user_id')->hideWhenCreating(), //Auto insert in model
             Images::make('Page Image', 'page-header')
         ];

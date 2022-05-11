@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\ID;
@@ -92,7 +93,7 @@ class Nav extends Resource
                 ->dependsOn('parent', function (Number $field, NovaRequest $request, FormData $formData) {
                     if($formData->parent == '')
                     {
-                        $field->show()->rules("unique:nav_items,lft,{{resourceId}}");
+                        $field->show()->rules("unique:nav_items,lft,{{resourceId}}")->default(DB::scalar("Select max(lft) from nav_items") + 1);
                     }
                 }),
         ];

@@ -23,8 +23,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get("/termine", [\App\Http\Controllers\AppointmentController::class, 'show']);
+
 Route::get('/{page:slug}', [PageController::class, 'index'])->name('page');
 
 Route::post("/kontakt", [\App\Http\Controllers\contactController::class, 'sendMail']);
+
+
 
 
