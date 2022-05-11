@@ -4,7 +4,6 @@
             Kontaktformular:
         </div>
         <form class="form" action="/kontakt" method="post">
-<!--            {{ csrf_field() }}-->
             <input type="hidden" name="_token" :value="csrf">
             <div class="row">
                 <div class="form-group is-empty">

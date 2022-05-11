@@ -14,11 +14,14 @@
 {{--                            TODO: - test + remove--}}
 {{--                            {{csrf_field()}}--}}
                             {!! $page->content !!}
+
                         </div>
                     </div>
-
                 </div>
             </div>
+            @if(session()->has("email"))
+                <flash message="{{session('email')}}"></flash>
+            @endif
         </div>
 @endsection
 

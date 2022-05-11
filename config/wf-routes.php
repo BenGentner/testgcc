@@ -16,11 +16,11 @@
 
 
         // path  all galleries:
-        "galleries_path" => "galleries/",
+        "galleries_path" => "bilder/",
 
 
          //path a single gallery with images
-        "gallery_path" => "gallery/{key}/",
+        "gallery_path" => "bilder/{key}/",
 
 
         /*

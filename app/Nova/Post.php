@@ -2,8 +2,16 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MultiSelect;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Post extends \Webfactor\WfBasicFunctionPackage\Nova\Post
@@ -37,12 +45,20 @@ class Post extends \Webfactor\WfBasicFunctionPackage\Nova\Post
      */
     public function fields(NovaRequest $request)
     {
-        return
-            array_merge(parent::fields($request),
-                [
-//                      new fields
-                ],
-            );
+        return [
+            ID::make(__('ID'), 'id')->sortable(),
+            Text::make("Title", "title")->rules("max:255", "required"),
+            Text::make("Slug", "slug")->rules("max:255", "required")->hideFromIndex()
+                ->creationRules("unique:posts,slug")
+                ->updateRules('unique:posts,slug,{{resourceId}}'),
+            BelongsTo::make("User", "user")->exceptOnForms(),
+            BelongsTo::make("Creator", "creator", User::class)->exceptOnForms(),
+            NovaTinyMCE::make("Post-Body", "body")->rules("max:65535", "required")
+                ->displayUsing(function ($body) {
+                    return strip_tags($body);
+                }),
+            Images::make('News Image', 'post-image')
+        ];
     }
 
     /**

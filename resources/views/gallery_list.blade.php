@@ -20,7 +20,7 @@
                                     <div class="row">
                                         <div class="col-md-9 col-md-offset-1">
                                             <h2>
-                                                <a href="/bilder/{{ $year . '/' . $gallery->slug }}">{{ $gallery->title }}</a>
+                                                <a href="/bilder/{{$gallery->slug }}">{{ $gallery->title }}</a>
                                             </h2>
                                         </div>
 

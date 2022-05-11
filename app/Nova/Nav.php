@@ -92,7 +92,7 @@ class Nav extends Resource
                 ->dependsOn('parent', function (Number $field, NovaRequest $request, FormData $formData) {
                     if($formData->parent == '')
                     {
-                        $field->show()->rules("unique:nav_items,lft");
+                        $field->show()->rules("unique:nav_items,lft,{{resourceId}}");
                     }
                 }),
         ];

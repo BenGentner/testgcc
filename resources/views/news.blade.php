@@ -19,7 +19,7 @@
                                 @foreach($articles as $article)
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <img src="{{ $article->image }}"
+                                            <img src="{{ $article->thumbnail() }}"
                                                  alt="Thumbnail Image" class="img-rectangle img-raised img-responsive">
                                         </div>
 
@@ -29,7 +29,7 @@
                                                 {{ $article->title }}
                                             </h2>
                                             <p>
-                                                {!! $article->content !!}
+                                                {!! $article->body !!}
                                             </p>
                                         </div>
                                     </div>

@@ -9,7 +9,7 @@ return
          */
 
         'models' => [
-            'post' => \Webfactor\WfBasicFunctionPackage\Models\Post::class,
+            'post' => \App\Models\Post::class,
             'tag' => \Webfactor\WfBasicFunctionPackage\Models\Tag::class,
             'category' => \Webfactor\WfBasicFunctionPackage\Models\Category::class,
             'media' => \Spatie\MediaLibrary\MediaCollections\Models\Media::class,

@@ -16,9 +16,9 @@
                                     Diese Galerie existiert leider nicht.
                                 </div>
                             @else
-                                <div>
-                                    {!! $gallery->content !!}
-                                </div>
+                                <p>
+                                    {!! $gallery->description !!}
+                                </p>
                                 <div class="gallery">
                                     <section
                                             data-featherlight-gallery
@@ -27,7 +27,7 @@
                                         <div class="row">
                                             @foreach($files as $file)
                                                 <div class="col-md-2" style="margin-bottom: 10px;">
-                                                    <a href="/{{ $file }}"><img src="/{{ $file }}"
+                                                    <a href="{{ $file->getUrl() }}"><img src="{{ $file->getUrl('thumb') }}"
                                                                                 style="width: 165px; max-height: 100%;object-fit: cover;"></a>
                                                 </div>
 
