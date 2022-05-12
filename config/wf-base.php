@@ -19,7 +19,7 @@
         | method.
         */
 
-        'default_amount_posts' => 10,
+        'default_amount_posts' => 1,
 
         /*
         | -----------------------------
@@ -40,7 +40,7 @@
         | method.
         */
 
-        'default_amount_galleries' => 10,
+        'default_amount_galleries' => 20,
 
         /*
         | -----------------------------

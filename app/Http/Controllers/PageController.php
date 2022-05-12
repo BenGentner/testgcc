@@ -9,9 +9,6 @@ class PageController extends Controller
 {
     public function index(Page $page)
     {
-        /*TODO:
-         * -template
-         */
         $image = null;
         $media = $page->getMedia("page-header");
 
@@ -19,9 +16,6 @@ class PageController extends Controller
         {
             $image = $media[0]->getFullUrl();
         }
-//        return $image;
-
-//        return view("pages." . $page->template, compact("page"));
         return view("pages.standard", compact("image", "page"));
     }
 }

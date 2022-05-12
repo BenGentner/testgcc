@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -32,7 +33,6 @@ class Post extends \Webfactor\WfBasicFunctionPackage\Models\Post implements HasM
     }
     public function thumbnail()
     {
-        $image = $this->getFirstMediaUrl("post-image", "thumb");
-        return $image;
+        return $this->getFirstMediaUrl("post-image", "thumb");
     }
 }

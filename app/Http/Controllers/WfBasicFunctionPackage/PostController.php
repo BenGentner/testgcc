@@ -15,8 +15,19 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 
     public function show(Request $request)
     {
-        $articles = parent::show($request);
+        $articles = $this->getPosts($request);
         return view("news", compact("articles"));
+    }
+
+    public function getPosts(Request $request)
+    {
+        $articles = parent::show($request);
+
+        $articles = collect($articles)->map(function($article) {
+            $article->thumbnail = $article->thumbnail();
+            return $article;
+        });
+        return $articles;
     }
 
 }
