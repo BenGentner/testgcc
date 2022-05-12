@@ -12,6 +12,7 @@
         "laravel/nova": "4.*",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "unisharp/laravel-filemanager": "^2.4",
         "webfactor_project/wf_basic_function_package": "dev-master"
     },
     "repositories": [

@@ -47,12 +47,12 @@ class Post extends \Webfactor\WfBasicFunctionPackage\Nova\Post
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("Title", "title")->rules("max:255", "required"),
+            Text::make("Title", "title")->rules("max:255", "required")->sortable(),
             Text::make("Slug", "slug")->rules("max:255", "required")->hideFromIndex()
                 ->creationRules("unique:posts,slug")
                 ->updateRules('unique:posts,slug,{{resourceId}}'),
-            BelongsTo::make("User", "user")->exceptOnForms(),
-            BelongsTo::make("Creator", "creator", User::class)->exceptOnForms(),
+            BelongsTo::make("User", "user")->exceptOnForms()->sortable(),
+            BelongsTo::make("Creator", "creator", User::class)->exceptOnForms()->sortable(),
             NovaTinyMCE::make("Post-Body", "body")->rules("max:65535", "required")
                 ->displayUsing(function ($body) {
                     return strip_tags($body);

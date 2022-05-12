@@ -59,11 +59,12 @@ class Nav extends Resource
                     'page' => 'page',
                     'internal_link' => 'interner link',
                     'external_link' => 'externer link'
-                ])->rules('required'),
+                ])->rules('required')->sortable(),
 
             BelongsTo::make("page")
                 ->nullable()
                 ->hide()
+                ->sortable()
                 ->dependsOn('type', function (BelongsTo $field, NovaRequest $request, FormData $formData) {
                     if($formData->type === 'page')
                     {

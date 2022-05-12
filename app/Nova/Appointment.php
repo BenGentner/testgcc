@@ -43,10 +43,10 @@ class Appointment extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make("title"),
+            Text::make("title")->required()->sortable(),
             Text::make("description"),
-            DateTime::make("starts_at"),
-            DateTime::make("ends_at"),
+            DateTime::make("starts_at")->required()->sortable(),
+            DateTime::make("ends_at")->required(),
         ];
     }
 

@@ -48,9 +48,9 @@ class Page extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("title","title"),
+            Text::make("title","title")->required()->sortable(),
             Text::make("name","name"),
-            Text::make("slug","slug"),
+            Text::make("slug","slug")->rules("required", "unique:pages,slug"),
             NovaTinyMCE::make("content", "content")->options([
                 'use_lfm' => true
             ]),
