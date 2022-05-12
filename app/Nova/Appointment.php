@@ -22,7 +22,7 @@ class Appointment extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -30,7 +30,7 @@ class Appointment extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title', 'starts_at'
     ];
 
     /**

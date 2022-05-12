@@ -34,7 +34,7 @@ class Nav extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name', 'type'
     ];
 
     /**

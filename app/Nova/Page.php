@@ -34,7 +34,7 @@ class Page extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title'
     ];
 
     /**
@@ -50,7 +50,7 @@ class Page extends Resource
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("title","title")->required()->sortable(),
             Text::make("name","name"),
-            Text::make("slug","slug")->rules("required", "unique:pages,slug"),
+            Text::make("slug","slug")->rules("required", "unique:pages,slug,{{resourceId}}"),
             NovaTinyMCE::make("content", "content")->options([
                 'use_lfm' => true
             ]),
