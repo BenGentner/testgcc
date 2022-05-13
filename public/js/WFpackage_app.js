@@ -2640,6 +2640,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "post-preview",
@@ -2703,6 +2708,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2712,7 +2728,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      posts_amount: null
     };
   },
   created: function created() {
@@ -2725,18 +2742,28 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       return console.error(error);
     });
+    axios.get("api/posts/amount").then(function (response) {
+      return _this.posts_amount = response.data;
+    });
   },
   methods: {
     getPosts: function getPosts() {
       var _this2 = this;
 
+      axios.get("/api/" + this.posts_url).then(function (response) {
+        return _this2.posts = response.data;
+      });
+    },
+    morePosts: function morePosts() {
+      var _this3 = this;
+
       axios.get("/api/" + this.posts_url, {
         params: {
-          category: this.category,
-          search: this.search_text
+          skip: this.posts.length,
+          amount: 3
         }
       }).then(function (response) {
-        return _this2.posts = response.data;
+        return _this3.posts = _this3.posts.concat(response.data);
       });
     }
   }
@@ -4452,30 +4479,45 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "a",
-    { staticClass: "row", attrs: { href: "/" + _vm.post_url + _vm.post.slug } },
+    "div",
     [
-      _c("div", { staticClass: "col-md-2" }, [
-        _c("img", {
-          staticClass: "img-rectangle img-raised img-responsive",
-          attrs: { src: _vm.post.thumbnail, alt: "Thumbnail Image" },
-        }),
-      ]),
+      _c(
+        "a",
+        {
+          staticClass: "row",
+          attrs: { href: "/" + _vm.post_url + _vm.post.slug },
+        },
+        [
+          _c("div", { staticClass: "col-md-2" }, [
+            _c("img", {
+              staticClass: "img-rectangle img-raised img-responsive",
+              attrs: { src: _vm.post.thumbnail, alt: "Thumbnail Image" },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9 col-md-offset-1" }, [
+            _c("small", [_vm._v(_vm._s(_vm.post.created_at))]),
+            _vm._v(" "),
+            _c("h2", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.post.title) +
+                  "\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("p", { domProps: { innerHTML: _vm._s(_vm.post.body) } }, [
+              _vm._v(
+                "\n                    {!! post.body !!}\n\n                "
+              ),
+            ]),
+          ]),
+        ]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-9 col-md-offset-1" }, [
-        _c("small", [_vm._v(_vm._s(_vm.post.created_at))]),
-        _vm._v(" "),
-        _c("h2", [
-          _vm._v(
-            "\n                " + _vm._s(_vm.post.title) + "\n            "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("p", { domProps: { innerHTML: _vm._s(_vm.post.body) } }, [
-          _vm._v("\n                {!! post.body !!}\n            "),
-        ]),
-      ]),
-    ]
+      _vm._t("default"),
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -4510,9 +4552,32 @@ var render = function () {
               "\n            Zur Zeit sind keine News vorhanden\n        "
             ),
           ])
-        : _vm._l(_vm.posts, function (post) {
-            return _c("post-preview", { key: post.id, attrs: { post: post } })
+        : _vm._l(_vm.posts, function (post, index) {
+            return _c("post-preview", { key: post.id, attrs: { post: post } }, [
+              index !== _vm.posts.length - 1
+                ? _c("div", { staticClass: "row" }, [_c("hr")])
+                : _vm._e(),
+            ])
           }),
+      _vm._v(" "),
+      _vm.posts.length < _vm.posts_amount
+        ? _c(
+            "div",
+            {
+              staticClass: "relative flex py-5 items-center",
+              on: { click: _vm.morePosts },
+            },
+            [
+              _c("div", { staticClass: "flex-grow border-t border-gray-400" }),
+              _vm._v(" "),
+              _c("a", { staticClass: "flex-shrink mx-4 text-gray-400" }, [
+                _vm._v("mehr Anzeigen"),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex-grow border-t border-gray-400" }),
+            ]
+          )
+        : _vm._e(),
     ],
     2
   )

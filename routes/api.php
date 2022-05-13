@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get("/nav-items", [\App\Http\Controllers\NavController::class, 'show']);
 
+Route::get("/posts/amount", [\App\Http\Controllers\WfBasicFunctionPackage\PostController::class, "amount"]);
+
 Route::get("/", [\App\Http\Controllers\WfBasicFunctionPackage\PostController::class, 'getPosts']);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\WfBasicFunctionPackage;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\PostController
 {
@@ -27,7 +29,12 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
             $article->thumbnail = $article->thumbnail();
             return $article;
         });
+
         return $articles;
+    }
+    public function amount()
+    {
+        return DB::scalar("select count(*) from posts");
     }
 
 }

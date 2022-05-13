@@ -9,22 +9,27 @@
 
 
 <!--    @foreach($articles as $article)-->
-    <a :href="'/' + post_url + post.slug" class="row">
-        <div class="col-md-2">
-            <img :src="post.thumbnail"
-                 alt="Thumbnail Image" class="img-rectangle img-raised img-responsive">
-        </div>
+    <div>
+        <a :href="'/' + post_url + post.slug" class="row">
+            <div class="col-md-2">
+                <img :src="post.thumbnail"
+                     alt="Thumbnail Image" class="img-rectangle img-raised img-responsive">
+            </div>
 
-        <div class="col-md-9 col-md-offset-1">
-            <small>{{ post.created_at}}</small>
-            <h2>
-                {{ post.title }}
-            </h2>
-            <p v-html="post.body">
-                {!! post.body !!}
-            </p>
-        </div>
-    </a>
+            <div class="col-md-9 col-md-offset-1">
+                <small>{{ post.created_at}}</small>
+                <h2>
+                    {{ post.title }}
+                </h2>
+                <p v-html="post.body">
+                    {!! post.body !!}
+
+                </p>
+            </div>
+        </a>
+        <slot></slot>
+    </div>
+
 <!--    <div class="row">-->
 <!--        <hr>-->
 <!--    </div>-->
