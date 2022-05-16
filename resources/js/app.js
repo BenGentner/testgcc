@@ -4,6 +4,7 @@ import Navigation from "./components/navigation.vue"
 import Contact from "./components/contact.vue"
 import Flash from "./components/flash"
 import posts_grid from "./Webfactor/WfBasicFunctionPackage/vue/posts-grid"
+import single_post from "./Webfactor/WfBasicFunctionPackage/vue/single_post";
 
 
 new Vue ({
@@ -14,5 +15,5 @@ new Vue ({
 new Vue ({
     el:"#app",
 
-    components: {Contact, Flash, posts_grid}
+    components: {Contact, Flash, posts_grid, single_post}
 })

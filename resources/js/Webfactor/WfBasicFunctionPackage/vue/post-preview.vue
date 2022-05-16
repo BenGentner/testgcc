@@ -10,21 +10,18 @@
 
 <!--    @foreach($articles as $article)-->
     <div>
-        <a :href="'/' + post_url + post.slug" class="row">
+        <a :href="'/' + post_url + post.slug" class="row" style="color: black">
             <div class="col-md-2">
                 <img :src="post.thumbnail"
                      alt="Thumbnail Image" class="img-rectangle img-raised img-responsive">
             </div>
 
             <div class="col-md-9 col-md-offset-1">
-                <small>{{ post.created_at}}</small>
+                <small v-text="getDate(post.created_at)"></small>
                 <h2>
                     {{ post.title }}
                 </h2>
-                <p v-html="post.body">
-                    {!! post.body !!}
-
-                </p>
+                <span v-html="post.body.substring(0, 200) + '...'"></span>
             </div>
         </a>
         <slot></slot>
@@ -44,11 +41,20 @@ export default {
 
     data() {
         return {
-            post_url: ""
+            post_url: "",
+            show_more: false,
         }
     },
     methods: {
-
+        getDate(date) {
+            date = new Date(date);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+            return date.toLocaleDateString("de-DE", options);
+        },
+        show()
+        {
+            this.show_more = !this.show_more;
+        }
     },
 
     created() {

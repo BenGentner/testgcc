@@ -11,6 +11,9 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
     public function index($post)
     {
         $post = parent::index($post);
+
+        $post->thumbnail = $post->thumbnail();
+//        ddd($post->thumbnail);
         return view("Webfactor/WfBasicFunctionPackage/single_post", compact("post"));
     }
 

@@ -29,7 +29,7 @@
 <!--        <a class="flex justify-center items-center text-3xl" @click="morePosts">&#45;&#45;&#45;&#45;&#45;&#45; mehr Anzeigen &#45;&#45;&#45;&#45;&#45;&#45;</a>-->
         <div @click="morePosts" v-if="posts.length < posts_amount" class="relative flex py-5 items-center">
             <div class="flex-grow border-t border-gray-400"></div>
-            <a  class="flex-shrink mx-4 text-gray-400">mehr Anzeigen</a>
+            <a  class="flex-shrink mx-4 text-gray-400">mehr News Anzeigen</a>
             <div class="flex-grow border-t border-gray-400"></div>
         </div>
 
