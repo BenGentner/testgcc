@@ -19,7 +19,7 @@
         | method.
         */
 
-        'default_amount_posts' => 1,
+        'default_amount_posts' => 3,
 
         /*
         | -----------------------------

@@ -9,52 +9,10 @@
                     <span class="icon-bar"></span>
                 </button>
 
-
-{{--                <a href="/">--}}
-{{--                    <div class="logo-container">--}}
-{{--                        <div class="brand">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </a>--}}
             </div>
             <navigation id="navigation-index"></navigation>
 
 
-            {{--        <div class="collapse navbar-collapse pull-right">--}}
-            {{--            <ul class="nav navbar-nav">--}}
-
-            {{--                <?php--}}
-            {{--                $menu = App\Models\Nav::whereNull('parent_id')->orderby('lft')->get();--}}
-            {{--                ?>--}}
-
-            {{--                @foreach($menu as $menuItem)--}}
-            {{--                    @if($menuItem->descendants->isNotEmpty())--}}
-            {{--                        <li class="dropdown">--}}
-            {{--                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $menuItem->name }} <b--}}
-            {{--                                        class="caret"></b></a>--}}
-            {{--                            <ul class="dropdown-menu">--}}
-            {{--                                @foreach($menuItem->descendants->sortBy('lft') as $subMenuItem)--}}
-            {{--                                    <li><a href="{{ $subMenuItem->url() }}">{{ $subMenuItem->name }}</a></li>--}}
-            {{--                                @endforeach--}}
-            {{--                            </ul>--}}
-            {{--                        </li>--}}
-            {{--                    @else--}}
-            {{--                        <li><a href="{{ $menuItem->url() }}">{{ $menuItem->name }}</a></li>--}}
-            {{--                    @endif--}}
-            {{--                @endforeach--}}
-
-            {{--                --}}{{----}}
-            {{--                <li class="dropdown">--}}
-            {{--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Verein <b class="caret"></b></a>--}}
-            {{--                    <ul class="dropdown-menu">--}}
-            {{--                        <li><a href="/verein/vorstand">Vorstand</a></li>--}}
-            {{--                        <li><a href="/verein/sitzungspraesidenten">Sitzungspräsidenten</a></li>--}}
-            {{--                        <li><a href="/verein/satzung">Satzung</a></li>--}}
-            {{--                        <li><a href="/verein/orden">Orden</a></li>--}}
-            {{--                    </ul>--}}
-            {{--                </li>--}}
-            {{--            </ul>--}}
-            {{--        </div>--}}
         </div>
     </nav>
 </div>

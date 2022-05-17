@@ -26,13 +26,17 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 
     public function getPosts(Request $request)
     {
-        $articles = parent::show($request);
+        $skip = $request->skip ?: config('wf-base.default_skip_posts');
+        $amount = $request->amount ?:  config('wf-base.default_amount_posts');
+
+        $articles = config('wf-resource.models.post')::query()->take($amount)->skip($skip)->orderBy("created_at", "desc")->get();
+
 
         $articles = collect($articles)->map(function($article) {
             $article->thumbnail = $article->thumbnail();
             return $article;
-        });
 
+        });
         return $articles;
     }
     public function amount()

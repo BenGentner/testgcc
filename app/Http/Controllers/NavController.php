@@ -10,7 +10,6 @@ class NavController extends Controller
 {
     public function show()
     {
-        //load not working
         return Nav::orderBy("lft", "ASC")->with("page", "children")->get();
     }
 }

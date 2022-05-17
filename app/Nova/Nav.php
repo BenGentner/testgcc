@@ -72,7 +72,7 @@ class Nav extends Resource
                     }
                 }),
 
-            Text::make("Link", "link")
+            Text::make("Link", "relative_link")
                 ->hide()
                 ->dependsOn('type', function (Text $field, NovaRequest $request, FormData $formData) {
                     if($formData->type === 'external_link')

@@ -13,8 +13,10 @@
 <!--            </div>-->
 <!--        </div>-->
 <!--        post preview-->
-
-        <p v-if="posts.length === 0">
+        <p v-if="loaded === false">
+            Posts werden geladen...
+        </p>
+        <p v-else-if="posts.length === 0">
             Zur Zeit sind keine News vorhanden
         </p>
          <post-preview v-else
@@ -47,6 +49,7 @@ export default {
         return {
             posts: [],
             posts_amount: null,
+            loaded: false,
         }
     },
 
@@ -63,14 +66,18 @@ export default {
     methods: {
         getPosts() {
             axios.get("/api/" +  this.posts_url)
-                .then(response => this.posts = response.data)
-
+                .then((response) => {
+                    this.posts = response.data;
+                    this.loaded = true;
+                })
+                .catch(error => console.error(error))
         },
         morePosts()
         {
             axios.get("/api/" +  this.posts_url, {
                 params: {skip: this.posts.length, amount: 3}})
                 .then(response => this.posts = this.posts.concat(response.data))
+                .catch(error => console.error(error))
         }
     }
 }

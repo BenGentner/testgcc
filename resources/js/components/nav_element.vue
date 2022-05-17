@@ -4,12 +4,12 @@
                 class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li v-for="subMenuItem in this.navItem.children">
-                    <a :href="subMenuItem.link">{{ subMenuItem.name }}</a>
+                    <a :href="subMenuItem.absolute_link">{{ subMenuItem.name }}</a>
                 </li>
             </ul>
         </li>
         <li v-else-if="!navItem.parent_id">
-            <a :href="navItem.link">{{ navItem.name }}</a>
+            <a :href="navItem.absolute_link">{{ navItem.name }}</a>
         </li>
 
 

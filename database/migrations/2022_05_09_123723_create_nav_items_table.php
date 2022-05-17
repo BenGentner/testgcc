@@ -17,7 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->string('type', 20)->nullable();
-            $table->string('link', 255)->nullable();
+            $table->string('relative_link', 255)->nullable();
+            $table->string('absolute_link', 255)->nullable();
             $table->integer('page_id')->unsigned()->nullable();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->integer('lft')->unsigned()->nullable();

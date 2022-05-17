@@ -4,9 +4,11 @@ namespace App\Nova;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MultiSelect;
 use Laravel\Nova\Fields\Text;
@@ -37,6 +39,16 @@ class Post extends \Webfactor\WfBasicFunctionPackage\Nova\Post
      */
 //    public static $search = parent::$search;
 
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->when(empty($request->get('orderBy')), function(Builder $q) {
+            $q->getQuery()->orders = [];
+
+            return $q->orderBy("created_at", "desc");
+        });
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -48,6 +60,7 @@ class Post extends \Webfactor\WfBasicFunctionPackage\Nova\Post
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("Title", "title")->rules("max:255", "required")->sortable(),
+            DateTime::make("created at", "created_at")->sortable()->exceptOnForms(),
             Text::make("Slug", "slug")->rules("max:255", "required")->hideFromIndex()
                 ->creationRules("unique:posts,slug")
                 ->updateRules('unique:posts,slug,{{resourceId}}'),

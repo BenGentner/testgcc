@@ -30,11 +30,12 @@ class Nav extends Model
     {
         switch ($this->type) {
             case 'internal_link':
-                $this->link = ($this->link) ? url($this->link) : url('');
+                $this->absolute_link = ($this->relative_link) ? url($this->relative_link) : url('');
                 break;
 
             case 'page':
-                $this->link = url($this->page->slug);
+                $this->absolute_link = url($this->page->slug);
+                $this->relative_link = $this->page->slug;
                 break;
             default: //external_link
                 break;
